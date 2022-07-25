@@ -43,13 +43,27 @@ const Login = () => {
         return isValid;
     };
 
-    const _login = () => {
+    const _login = async () => {
         const isValid = _validate();
         
         if (isValid) {
+            const payload = {
+                email: email,
+                password: password,
+            };
+
+        
+            const res = await fetch("http://practica.local/api/login", {
+                method: 'POST',
+                headers: {
+                    "Accept": "application/json",
+                    "Contenet Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+
+            console.log(res);
         }
-        // make a request to API
-        // make a request to API
     };
 
     return (
