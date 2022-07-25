@@ -45,7 +45,11 @@ const Login = () => {
 
     const _login = () => {
         const isValid = _validate();
-        console.log(errors, isValid, email, password);
+        
+        if (isValid) {
+        }
+        // make a request to API
+        // make a request to API
     };
 
     return (
@@ -63,7 +67,7 @@ const Login = () => {
                                 isInvalid={errors.email.length}
                                 onChange={_handleChange}
                             />
-                            {errors.email.length && (
+                            {!!errors.email.length && (
                                 <Form.Control.Feedback type="invalid">
                                     {errors.email}
                                 </Form.Control.Feedback>
@@ -81,7 +85,7 @@ const Login = () => {
                                 isInvalid={errors.password.length}
                                 value={password}
                             />
-                            {errors.password.length && (
+                            {!!errors.password.length && (
                                 <Form.Control.Feedback type="invalid">
                                     {errors.password}
                                 </Form.Control.Feedback>
