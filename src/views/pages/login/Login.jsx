@@ -11,7 +11,7 @@ const Login = () => {
         password: "",
     });
 
-    const handleChange = (e) => {
+    const _handleChange = (e) => {
         const { name, value } = e.target;
 
         if (name === "email") {
@@ -19,11 +19,14 @@ const Login = () => {
         } else if (name === "password") {
             setPassword(value);
         }
+        if (value.length) {
+            setErrors((prev) => ({ ...prev, [name]:"" }));
+        }
     };
 
     const _validate = () => {
         let isValid = true;
-        const tmpErrors = {...errors};
+        const tmpErrors = { ...errors };
 
         if (!email.length) {
             tmpErrors.email = "Email can not be empty";
@@ -31,52 +34,40 @@ const Login = () => {
         }
 
         if (!password.length) {
-            tmpErrors.email = "Password can not be empty";
+            tmpErrors.password = "Password can not be empty";
             isValid = false;
         }
-        
+
+        setErrors(tmpErrors);
+
         return isValid;
-    }
+    };
 
     const _login = () => {
-        if (!email.length) {
-            setErrors((prev) => {
-                return {
-                    ...prev,
-                    email: "Email can not be empty",
-                };
-            });
-            return;
-        }
-
-        if (!password.length) {
-            setErrors((prev) => {
-                return {
-                    ...prev,
-                    email: "Password can not be empty",
-                };
-            });
-            return;
-        }
+        const isValid = _validate();
+        console.log(errors, isValid, email, password);
     };
-    
-    console.log(email, password);
-    console.log(errors);
 
     return (
         <section>
             <Container>
                 <div className={classes.loginContainer}>
                     <div>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control
+                                name="email"
                                 type="email"
                                 placeholder="Enter email"
-                                name="email"
                                 value={email}
-                                onChange={handleChange}
+                                isInvalid={errors.email.length}
+                                onChange={_handleChange}
                             />
+                            {errors.email.length && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.email}
+                                </Form.Control.Feedback>
+                            )}
                         </Form.Group>
                     </div>
                     <div>
@@ -86,9 +77,15 @@ const Login = () => {
                                 type="password"
                                 placeholder="Enter password"
                                 name="password"
+                                onChange={_handleChange}
+                                isInvalid={errors.password.length}
                                 value={password}
-                                onChange={handleChange}
                             />
+                            {errors.password.length && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.password}
+                                </Form.Control.Feedback>
+                            )}
                         </Form.Group>
                     </div>
                     <Button onClick={_login}>LOGIN</Button>
