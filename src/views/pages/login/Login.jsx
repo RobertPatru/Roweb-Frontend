@@ -3,29 +3,38 @@ import classes from "./Login.module.scss";
 
 import { Button, Container, Form } from "react-bootstrap";
 
-
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
-    
+    const [errors, setErrors] = useState({
+        email: "",
+        password: "",
+    });
+
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        
+        const { name, value } = e.target;
+
         if (name === "email") {
             setEmail(value);
-        }
-        else if (name === "password") {
-            setPassword(value)
+        } else if (name === "password") {
+            setPassword(value);
         }
     };
-    
 
     const _login = () => {
-        console.log(email, password);
-    }
+        if (!email.length) {
+            setErrors((prev) => {
+                return {
+                    ...prev,
+                    email: "Email can not be empty",
+                };
+            });
+            return;
+        }
 
-    
+        console.log(email, password);
+    };
+
     return (
         <section>
             <Container>
