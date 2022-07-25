@@ -1,23 +1,40 @@
-import { useState } from "react";
-
+import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import classes from "./Register.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({
+        username: "",
         email: "",
         password: "",
+        confirmPassword: "",
     });
+    const nvigate = useNavigate();
 
     const _handleChange = (e) => {
         const { name, value } = e.target;
 
+        if (name === "username") {
+            setUsername(value);
+        }
+
         if (name === "email") {
             setEmail(value);
-        } else if (name === "password") {
+        }
+
+        if (name === "password") {
             setPassword(value);
         }
+
+        if (name === "confirmPassword") {
+            setConfirmPassword(value);
+        }
+
         if (value.length) {
             setErrors((prev) => ({ ...prev, [name]: "" }));
         }
@@ -27,13 +44,23 @@ const Register = () => {
         let isValid = true;
         const tmpErrors = { ...errors };
 
+        if (!username.length) {
+            tmpErrors.username = "Username cannot be empty!";
+            isValid = false;
+        }
+
         if (!email.length) {
-            tmpErrors.email = "Email can not be empty";
+            tmpErrors.email = "Email cannot be empty!";
             isValid = false;
         }
 
         if (!password.length) {
-            tmpErrors.password = "Password can not be empty";
+            tmpErrors.password = "Password cannot be empty!";
+            isValid = false;
+        }
+
+        if (!confirmPassword.length) {
+            tmpErrors.confirmPassword = "Confirm password cannot be empty!";
             isValid = false;
         }
 
@@ -42,32 +69,54 @@ const Register = () => {
         return isValid;
     };
 
-    const _login = async () => {
+    const _register = async () => {
         const isValid = _validate();
 
         if (isValid) {
+            // make API REQUEST
             const payload = {
-                email: email,
-                password: password,
+                email,
+                password,
             };
 
-            const res = await fetch("http://practica.local/api/login", {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Contenet Type": "application/json",
-                },
-                body: JSON.stringify(payload),
-            });
+            // const res = await fetch('http://practica.local/api/login', {
+            //   method: 'POST',
+            //   headers: {
+            //     "Accept": 'application/json',
+            //     "Content-Type": 'application/json'
+            //   },
+            //   body: JSON.stringify(payload)
+            // })
 
-            console.log(res);
+            // console.log(res);
+            nvigate('/verify-email');
         }
     };
+
+    console.log(errors, errors.email.length);
 
     return (
         <section>
             <Container>
-                <div >
+                <div className={classes.loginContainer}>
+                    <div>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control
+                                name="username"
+                                type="input"
+                                placeholder="Enter username"
+                                value={username}
+                                isInvalid={errors.username.length}
+                                onChange={_handleChange}
+                            />
+                            {!!errors.username.length && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.username}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
+                    </div>
                     <div>
                         <Form.Group className="mb-3">
                             <Form.Label>Email address</Form.Label>
@@ -87,15 +136,15 @@ const Register = () => {
                         </Form.Group>
                     </div>
                     <div>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Form.Label>Password</Form.Label>
                             <Form.Control
+                                name="password"
                                 type="password"
                                 placeholder="Enter password"
-                                name="password"
-                                onChange={_handleChange}
-                                isInvalid={errors.password.length}
                                 value={password}
+                                isInvalid={errors.password.length}
+                                onChange={_handleChange}
                             />
                             {!!errors.password.length && (
                                 <Form.Control.Feedback type="invalid">
@@ -104,7 +153,25 @@ const Register = () => {
                             )}
                         </Form.Group>
                     </div>
-                    <Button onClick={_login}>LOGIN</Button>
+                    <div>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Control
+                                name="confirmPassword"
+                                type="password"
+                                placeholder="Confirm password"
+                                value={confirmPassword}
+                                isInvalid={errors.confirmPassword.length}
+                                onChange={_handleChange}
+                            />
+                            {!!errors.confirmPassword.length && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.confirmPassword}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
+                    </div>
+                    <Button onClick={_register}>Register</Button>
                 </div>
             </Container>
         </section>
