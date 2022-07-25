@@ -21,6 +21,23 @@ const Login = () => {
         }
     };
 
+    const _validate = () => {
+        let isValid = true;
+        const tmpErrors = {...errors};
+
+        if (!email.length) {
+            tmpErrors.email = "Email can not be empty";
+            isValid = false;
+        }
+
+        if (!password.length) {
+            tmpErrors.email = "Password can not be empty";
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+
     const _login = () => {
         if (!email.length) {
             setErrors((prev) => {
@@ -32,8 +49,19 @@ const Login = () => {
             return;
         }
 
-        console.log(email, password);
+        if (!password.length) {
+            setErrors((prev) => {
+                return {
+                    ...prev,
+                    email: "Password can not be empty",
+                };
+            });
+            return;
+        }
     };
+    
+    console.log(email, password);
+    console.log(errors);
 
     return (
         <section>
