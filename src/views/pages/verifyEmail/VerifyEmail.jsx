@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
+
 
 const VerifyEmail = () => {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [code, setCode] = useState('');
+
 
     const [errors, setErrors] = useState({
         email: "",
@@ -53,7 +58,7 @@ const VerifyEmail = () => {
             // make API REQUEST
             const payload = {
                 email,
-                code
+                code,
             };
 
             // const res = await fetch('http://practica.local/api/login', {
@@ -66,6 +71,9 @@ const VerifyEmail = () => {
             // })
 
             // console.log(res);
+
+        navigate("/");
+
         }
     }
 

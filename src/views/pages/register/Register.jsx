@@ -3,6 +3,9 @@ import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import classes from "./Register.module.scss";
 
+import PasswordStrengthBar from 'react-password-strength-bar';
+import global_classes from '../../../resources/css/Reusable.module.scss';
+
 const Register = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
@@ -49,18 +52,25 @@ const Register = () => {
             isValid = false;
         }
 
-        if (!email.length) {
-            tmpErrors.email = "Email cannot be empty!";
-            isValid = false;
-        }
-
-        if (!password.length) {
-            tmpErrors.password = "Password cannot be empty!";
+        if (password.length < 8) {
+            tmpErrors.password = "Password cannot be shorter than 8 characters!";
             isValid = false;
         }
 
         if (!confirmPassword.length) {
             tmpErrors.confirmPassword = "Confirm password cannot be empty!";
+            isValid = false;
+        }
+
+        // Check if password and confirm password match
+        if (password !== confirmPassword) {
+            tmpErrors.confirmPassword = "Password and Confirm Password do not match!";
+            isValid = false;
+        }
+
+        // Check if email introduced matches the email template
+        if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+            tmpErrors.email = "Please enter  valid email address";
             isValid = false;
         }
 
@@ -80,6 +90,7 @@ const Register = () => {
         const payload = {
             email,
             password,
+            username,
         };
 
         // const res = await fetch('http://practica.local/api/login', {
@@ -147,6 +158,8 @@ const Register = () => {
                             isInvalid={errors.password.length}
                             onChange={_handleChange}
                         />
+                        <PasswordStrengthBar password={password} className={global_classes.pass_strength} />
+
                         {!!errors.password.length && (
                             <Form.Control.Feedback type="invalid">
                                 {errors.password}
@@ -165,6 +178,7 @@ const Register = () => {
                             isInvalid={errors.confirmPassword.length}
                             onChange={_handleChange}
                         />
+                        <PasswordStrengthBar password={confirmPassword} className={global_classes.pass_strength} />
                         {!!errors.confirmPassword.length && (
                             <Form.Control.Feedback type="invalid">
                                 {errors.confirmPassword}

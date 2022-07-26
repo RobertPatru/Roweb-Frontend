@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
+import PasswordStrengthBar from 'react-password-strength-bar';
+import global_classes from '../../../resources/css/Reusable.module.scss';
+
 const ForgotPassword = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -68,7 +71,7 @@ const ForgotPassword = () => {
         return isValid;
     };
 
-    const _register = async () => {
+    const _submit = async () => {
         const isValid = _validate();
 
         if (!isValid) {
@@ -145,8 +148,9 @@ const ForgotPassword = () => {
                             placeholder="Enter password"
                             value={password}
                             isInvalid={errors.password.length}
-                            onChange={_handleChange}
+                            onChange={_handleChange}                           
                         />
+                         <PasswordStrengthBar password={password} className={global_classes.pass_strength} />
                         {!!errors.password.length && (
                             <Form.Control.Feedback type="invalid">
                                 {errors.password}
@@ -164,7 +168,9 @@ const ForgotPassword = () => {
                             value={confirmPassword}
                             isInvalid={errors.confirmPassword.length}
                             onChange={_handleChange}
+                            className={global_classes.confirm_pass}
                         />
+                         <PasswordStrengthBar password={confirmPassword} className={global_classes.pass_strength} />
                         {!!errors.confirmPassword.length && (
                             <Form.Control.Feedback type="invalid">
                                 {errors.confirmPassword}
@@ -172,7 +178,7 @@ const ForgotPassword = () => {
                         )}
                     </Form.Group>
                 </div>
-                <Button onClick={_register}>Register</Button>
+                <Button onClick={_submit}>Submit</Button>
             </div>
         </section>
     );

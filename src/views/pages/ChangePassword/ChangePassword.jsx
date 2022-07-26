@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
+import PasswordStrengthBar from 'react-password-strength-bar';
+import global_classes from '../../../resources/css/Reusable.module.scss';
+
 const ChangePassword = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
-    const [code, setCode] = useState("");
+    const [oldPassword, setOldPassword] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({
         code: "",
         email: "",
+        oldPassword: "",
         password: "",
         confirmPassword: "",
     });
@@ -18,8 +22,8 @@ const ChangePassword = () => {
     const _handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === "code") {
-            setCode(value);
+        if (name === "old password") {
+            setOldPassword(value);
         }
 
         if (name === "email") {
@@ -43,7 +47,7 @@ const ChangePassword = () => {
         let isValid = true;
         const tmpErrors = { ...errors };
 
-        if (!code.length) {
+        if (!oldPassword.length) {
             tmpErrors.username = "Code cannot be empty!";
             isValid = false;
         }
@@ -79,7 +83,7 @@ const ChangePassword = () => {
         const payload = {
             email,
             password,
-            code,
+            oldPassword,
         };
 
         // const res = await fetch('http://practica.local/api/login', {
@@ -120,25 +124,25 @@ const ChangePassword = () => {
                 </div>
                 <div>
                     <Form.Group className="mb-3">
-                        <Form.Label>Code</Form.Label>
+                        <Form.Label>Old Passwprd</Form.Label>
                         <Form.Control
-                            name="code"
+                            name="old password"
                             type="input"
                             placeholder="Enter code"
-                            value={code}
-                            isInvalid={errors.code.length}
+                            value={oldPassword}
+                            isInvalid={errors.oldPassword.length}
                             onChange={_handleChange}
                         />
-                        {!!errors.code.length && (
+                        {!!errors.oldPassword.length && (
                             <Form.Control.Feedback type="invalid">
-                                {errors.code}
+                                {errors.oldPassword}
                             </Form.Control.Feedback>
                         )}
                     </Form.Group>
                 </div>
                 <div>
                     <Form.Group className="mb-3">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>New Password</Form.Label>
                         <Form.Control
                             name="password"
                             type="password"
@@ -147,6 +151,7 @@ const ChangePassword = () => {
                             isInvalid={errors.password.length}
                             onChange={_handleChange}
                         />
+                         <PasswordStrengthBar password={password} className={global_classes.pass_strength} />
                         {!!errors.password.length && (
                             <Form.Control.Feedback type="invalid">
                                 {errors.password}
@@ -156,7 +161,7 @@ const ChangePassword = () => {
                 </div>
                 <div>
                     <Form.Group className="mb-3">
-                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Label>Confirm New Password</Form.Label>
                         <Form.Control
                             name="confirmPassword"
                             type="password"
@@ -165,6 +170,7 @@ const ChangePassword = () => {
                             isInvalid={errors.confirmPassword.length}
                             onChange={_handleChange}
                         />
+                         <PasswordStrengthBar password={confirmPassword} className={global_classes.pass_strength} />
                         {!!errors.confirmPassword.length && (
                             <Form.Control.Feedback type="invalid">
                                 {errors.confirmPassword}

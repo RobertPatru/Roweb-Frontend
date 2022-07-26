@@ -1,0 +1,8 @@
+.pass_strength {
+    div {
+        div:nth-child(odd) {
+            height: 10px !important;
+            width: 100px;
+        }
+    }
+}
