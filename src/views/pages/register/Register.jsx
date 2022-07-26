@@ -109,8 +109,8 @@ const Register = () => {
 
     console.log(errors, errors.email.length);
     return (
-        <section>
-            <div className="customForm">
+        <section className={global_classes.full_screen }  >
+            <div className="customForm ">
                 <div>
                     <Form.Group className="mb-3">
                         <Form.Label>Username</Form.Label>
