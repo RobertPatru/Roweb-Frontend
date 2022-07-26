@@ -1,15 +1,13 @@
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     return (
         <div>
-            <Link to="/login" className="pe-5">Login</Link>
-            <Link to="/verify-email">Verify Email</Link>
+            <Link to="/login" className='pe-5'>Login</Link>
             <Link to="/register">Register</Link>
-            <Link to="/forgot-password">Forgot Password</Link>
-            <Link to="/change-password">Change Password</Link>
         </div>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home
