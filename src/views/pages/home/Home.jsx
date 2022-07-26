@@ -6,6 +6,8 @@ const Home = () => {
             <Link to="/login" className="pe-5">Login</Link>
             <Link to="/verify-email">Verify Email</Link>
             <Link to="/register">Register</Link>
+            <Link to="/forgot-password">Forgot Password</Link>
+            <Link to="/change-password">Change Password</Link>
         </div>
     );
 };
