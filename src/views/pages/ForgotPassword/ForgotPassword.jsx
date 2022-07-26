@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import classes from "./Register.module.scss";
 
-const Register = () => {
+const ForgotPassword = () => {
     const navigate = useNavigate();
-    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+    const [code, setCode] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState({
-        username: "",
+        code: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -19,8 +18,8 @@ const Register = () => {
     const _handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === "username") {
-            setUsername(value);
+        if (name === "code") {
+            setCode(value);
         }
 
         if (name === "email") {
@@ -44,8 +43,8 @@ const Register = () => {
         let isValid = true;
         const tmpErrors = { ...errors };
 
-        if (!username.length) {
-            tmpErrors.username = "Username cannot be empty!";
+        if (!code.length) {
+            tmpErrors.username = "Code cannot be empty!";
             isValid = false;
         }
 
@@ -80,6 +79,7 @@ const Register = () => {
         const payload = {
             email,
             password,
+            code
         };
 
         // const res = await fetch('http://practica.local/api/login', {
@@ -93,31 +93,13 @@ const Register = () => {
 
         // console.log(res);
 
-        navigate("/verify-email");
+        navigate("/");
     };
 
     console.log(errors, errors.email.length);
     return (
         <section>
             <div className="customForm">
-                <div>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control
-                            name="username"
-                            type="input"
-                            placeholder="Enter username"
-                            value={username}
-                            isInvalid={errors.username.length}
-                            onChange={_handleChange}
-                        />
-                        {!!errors.username.length && (
-                            <Form.Control.Feedback type="invalid">
-                                {errors.username}
-                            </Form.Control.Feedback>
-                        )}
-                    </Form.Group>
-                </div>
                 <div>
                     <Form.Group className="mb-3">
                         <Form.Label>Email address</Form.Label>
@@ -132,6 +114,24 @@ const Register = () => {
                         {!!errors.email.length && (
                             <Form.Control.Feedback type="invalid">
                                 {errors.email}
+                            </Form.Control.Feedback>
+                        )}
+                    </Form.Group>
+                </div>
+                <div>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Code</Form.Label>
+                        <Form.Control
+                            name="code"
+                            type="input"
+                            placeholder="Enter code"
+                            value={code}
+                            isInvalid={errors.code.length}
+                            onChange={_handleChange}
+                        />
+                        {!!errors.code.length && (
+                            <Form.Control.Feedback type="invalid">
+                                {errors.code}
                             </Form.Control.Feedback>
                         )}
                     </Form.Group>
@@ -178,4 +178,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default ForgotPassword;
