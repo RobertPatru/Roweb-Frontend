@@ -2,7 +2,7 @@
 
 :root {
     --title-color: #444;
-    --transition_speed: 2s;
+    --transition_speed: 1s;
 }
 
 // UTILITY CLASSES
@@ -95,7 +95,7 @@
             width: 50%;
             z-index: -10;
             transform: translateX(-1000%);
-            animation: from_side_to_center var(--transition_speed) 1s forwards;
+            animation: from_side_to_center var(--transition_speed) 2s forwards;
         }
 
         .left_upper_corner_text {

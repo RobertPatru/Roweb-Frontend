@@ -90,3 +90,9 @@
         font-weight: 700f;
      }
 }
+
+@media only screen and (min-width: 1000px) {
+    .container {
+        transform: translate(20%);
+    }
+}
