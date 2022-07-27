@@ -93,6 +93,7 @@
             bottom: 0;
             left: 0%;
             width: 50%;
+            max-width: 1050px;
             z-index: -10;
             transform: translateX(-1000%);
             animation: from_side_to_center var(--transition_speed) 2s forwards;

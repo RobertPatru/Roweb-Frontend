@@ -18,6 +18,9 @@
 
     li {
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         list-style: none;
         width: 400px;
         height: 100px;
@@ -87,12 +90,58 @@
 
     li:hover a {
         color: #fff;
-        font-weight: 700f;
+        font-weight: 700;
      }
 }
 
 @media only screen and (min-width: 1000px) {
     .container {
-        transform: translate(20%);
+        transform: translate(25%);
+    }
+
+    .home_welcome_image {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    .welcome_text {
+        font-size: 55px;
+    }
+
+    .categories_container {
+        li {
+            width: 500px;
+            height: 125px;
+        }
+
+        li:last-child::after {
+            box-shadow: -150px 150px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        li a {
+            font-size: 35px;
+        }
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    .container {
+        transform: translate(15%);
+    }
+
+    .categories_container {
+        li {
+            width: 600px;
+            height: 150px;
+        }
+
+        li:last-child::after {
+            box-shadow: -150px 150px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        li a {
+            font-size: 45px;
+        }
     }
 }

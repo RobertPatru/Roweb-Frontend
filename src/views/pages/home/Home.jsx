@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom'
 
 import classes from "./Home.module.scss";
 import global_classes from '../../../resources/css/Reusable.module.scss';
-import register_image from '../../../resources/images/welcome-img_1';
+import register_image from "../../../resources/images/undraw_people_re_8spw.svg";
 
 
 const Home = () => {
     return (
         <section className={`${global_classes.full_screen} ${global_classes.align_center}`}  >
-            <img src={register_image} alt="cartoon" className={`${global_classes.on_large_screens_img} ${global_classes.only_on_large_screens}`} />
+            <img src={register_image} alt="cartoon" className={`${global_classes.on_large_screens_img}  ${global_classes.only_on_large_screens}`} />
 
             <div className={`${global_classes.left_upper_corner_text} ${global_classes.only_on_large_screens}`}>
-                <h1>Welcome to our App!</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, illo!</p>
+                <h1 className={classes.welcome_text}>Welcome to our App!</h1>
+                {/* <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, illo!</p> */}
             </div>
 
         <div className={classes.container}>
