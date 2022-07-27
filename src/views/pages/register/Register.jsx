@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import classes from "./Register.module.scss";
+import register_image from '../../../resources/images/register-img.svg';
 
 import PasswordStrengthBar from 'react-password-strength-bar';
 import global_classes from '../../../resources/css/Reusable.module.scss';
@@ -109,11 +110,19 @@ const Register = () => {
 
     console.log(errors, errors.email.length);
     return (
-        <section className={global_classes.full_screen }  >
-            <div className="customForm ">
+        <section className={`${global_classes.full_screen} ${global_classes.align_center}`}  >
+            <img src={register_image} alt="cartoon" className={`${global_classes.on_large_screens_img} ${global_classes.only_on_large_screens}`} />
+
+            <div className={`${global_classes.left_upper_corner_text} ${global_classes.only_on_large_screens}`}>
+                <h1>New here?</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, illo!</p>
+            </div>
+        
+            <div className={`customForm ${global_classes.align_center} ${global_classes.direction_column} ${global_classes.form_container}`}>
+                <h1 className={`${global_classes.title}`}>Sign in</h1>
                 <div>
                     <Form.Group className="mb-3">
-                        <Form.Label>Username</Form.Label>
+                        <Form.Label>Username:</Form.Label>
                         <Form.Control
                             name="username"
                             type="input"
@@ -131,7 +140,7 @@ const Register = () => {
                 </div>
                 <div>
                     <Form.Group className="mb-3">
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label>Email address:</Form.Label>
                         <Form.Control
                             name="email"
                             type="email"
@@ -149,7 +158,7 @@ const Register = () => {
                 </div>
                 <div>
                     <Form.Group className="mb-3">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>Password:</Form.Label>
                         <Form.Control
                             name="password"
                             type="password"
@@ -169,7 +178,7 @@ const Register = () => {
                 </div>
                 <div>
                     <Form.Group className="mb-3">
-                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Label>Confirm Password:</Form.Label>
                         <Form.Control
                             name="confirmPassword"
                             type="password"
@@ -186,7 +195,7 @@ const Register = () => {
                         )}
                     </Form.Group>
                 </div>
-                <Button onClick={_register}>Register</Button>
+                <Button onClick={_register} className={`${global_classes.btn}`}>Register</Button>
             </div>
         </section>
     );
