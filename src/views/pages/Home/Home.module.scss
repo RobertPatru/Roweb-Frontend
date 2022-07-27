@@ -127,13 +127,17 @@
 
 @media only screen and (min-width: 2000px) {
     .container {
-        transform: translate(15%);
+        transform: translate(25%);
+    }
+
+    .decorative_image {
+        width: 35% !important;
     }
 
     .categories_container {
         li {
-            width: 600px;
-            height: 150px;
+            width: 550px;
+            height: 125px;
         }
 
         li:last-child::after {
