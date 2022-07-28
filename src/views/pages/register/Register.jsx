@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+
 import classes from "./Register.module.scss";
 import register_image from '../../../resources/images/register-img.svg';
 
