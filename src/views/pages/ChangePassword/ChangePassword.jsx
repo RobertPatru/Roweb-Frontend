@@ -108,7 +108,7 @@ const ChangePassword = () => {
         <section className={`${global_classes.full_screen} ${global_classes.align_center}`}  >
             <img src={forgot_password_image} alt="cartoon" className={`${global_classes.on_large_screens_img} ${global_classes.only_on_large_screens} ${classes.image_size}` } />
 
-            <div className={`${global_classes.left_upper_corner_text} ${global_classes.only_on_large_screens} `}>
+            <div className={`${global_classes.left_upper_corner_text} ${global_classes.only_on_large_screens} ${classes.left_corner_upper_text}`}>
                 <h1>Wanna change your password?</h1>
                 <p>No worries! We can help you.</p>
             </div>
