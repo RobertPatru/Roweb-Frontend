@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import PasswordStrengthBar from 'react-password-strength-bar';
 import global_classes from '../../../resources/css/Reusable.module.scss';
+import classes from './ChangePassword.module.scss';
+
+import forgot_password_image from '../../../resources/images/change-passwprd-image.svg';
 
 const ChangePassword = () => {
     const navigate = useNavigate();
@@ -102,8 +105,15 @@ const ChangePassword = () => {
 
     console.log(errors, errors.email.length);
     return (
-        <section>
-            <div className="customForm">
+        <section className={`${global_classes.full_screen} ${global_classes.align_center}`}  >
+            <img src={forgot_password_image} alt="cartoon" className={`${global_classes.on_large_screens_img} ${global_classes.only_on_large_screens} ${classes.image_size}` } />
+
+            <div className={`${global_classes.left_upper_corner_text} ${global_classes.only_on_large_screens} `}>
+                <h1>Wanna change your password?</h1>
+                <p>No worries! We can help you.</p>
+            </div>
+            <div className={`customForm ${global_classes.align_center} ${global_classes.direction_column} ${global_classes.form_container}`}>
+                <h1 className={`${global_classes.title}`}>Forgot password</h1>
                 <div>
                     <Form.Group className="mb-3">
                         <Form.Label>Email address</Form.Label>

@@ -140,6 +140,20 @@
     }
 }
 
+@media only screen and (min-width: 1600px) {
+    .full_screen {
+        .left_upper_corner_text {
+            h1 {
+                font-size: 70px;
+            }
+
+            p {
+                font-size: 30px ;
+            }
+        }
+    }
+}
+
 // ANIMATION
 @keyframes from_side_to_center {
     100% {

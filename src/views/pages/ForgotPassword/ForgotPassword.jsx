@@ -6,7 +6,7 @@ import PasswordStrengthBar from 'react-password-strength-bar';
 import global_classes from '../../../resources/css/Reusable.module.scss';
 import classes from './ForgotPassword.module.scss';
 
-import login_image from '../../../resources/images/login-img.svg';
+import forgot_password_image from '../../../resources/images/forgot-password-image.svg';
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
@@ -113,12 +113,12 @@ const ForgotPassword = () => {
     console.log(errors, errors.email.length);
     return (
         <section className={`${global_classes.full_screen} ${global_classes.align_center}`}  >
-        <img src={login_image} alt="cartoon" className={`${global_classes.on_large_screens_img} ${global_classes.only_on_large_screens} ${classes.image_size}` } />
+            <img src={forgot_password_image} alt="cartoon" className={`${global_classes.on_large_screens_img} ${global_classes.only_on_large_screens} ${classes.image_size}` } />
 
-        <div className={`${global_classes.left_upper_corner_text} ${global_classes.only_on_large_screens}`}>
-            <h1>Forgot your password?</h1>
-            <p>No worries! We can help you.</p>
-        </div>
+            <div className={`${global_classes.left_upper_corner_text} ${global_classes.only_on_large_screens}`}>
+                <h1>Forgot your password?</h1>
+                <p>No worries! We can help you.</p>
+            </div>
             <div className={`customForm ${global_classes.align_center} ${global_classes.direction_column} ${global_classes.form_container}`}>
                 <h1 className={`${global_classes.title}`}>Forgot password</h1>
                 <div>
