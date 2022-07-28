@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import PasswordStrengthBar from 'react-password-strength-bar';
 import global_classes from '../../../resources/css/Reusable.module.scss';
+import classes from './ForgotPassword.module.scss';
+
+import login_image from '../../../resources/images/login-img.svg';
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
@@ -51,10 +54,6 @@ const ForgotPassword = () => {
             isValid = false;
         }
 
-        if (!email.length) {
-            tmpErrors.email = "Email cannot be empty!";
-            isValid = false;
-        }
 
         if (!password.length) {
             tmpErrors.password = "Password cannot be empty!";
@@ -63,6 +62,18 @@ const ForgotPassword = () => {
 
         if (!confirmPassword.length) {
             tmpErrors.confirmPassword = "Confirm password cannot be empty!";
+            isValid = false;
+        }
+
+        // Check if password and confirm password match
+        if (password !== confirmPassword) {
+            tmpErrors.confirmPassword = "Password and Confirm Password do not match!";
+            isValid = false;
+        }
+
+        // Check if email introduced matches the email template
+        if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+            tmpErrors.email = "Please enter  valid email address";
             isValid = false;
         }
 
@@ -101,8 +112,15 @@ const ForgotPassword = () => {
 
     console.log(errors, errors.email.length);
     return (
-        <section>
-            <div className="customForm">
+        <section className={`${global_classes.full_screen} ${global_classes.align_center}`}  >
+        <img src={login_image} alt="cartoon" className={`${global_classes.on_large_screens_img} ${global_classes.only_on_large_screens} ${classes.image_size}` } />
+
+        <div className={`${global_classes.left_upper_corner_text} ${global_classes.only_on_large_screens}`}>
+            <h1>Forgot your password?</h1>
+            <p>No worries! We can help you.</p>
+        </div>
+            <div className={`customForm ${global_classes.align_center} ${global_classes.direction_column} ${global_classes.form_container}`}>
+                <h1 className={`${global_classes.title}`}>Forgot password</h1>
                 <div>
                     <Form.Group className="mb-3">
                         <Form.Label>Email address</Form.Label>

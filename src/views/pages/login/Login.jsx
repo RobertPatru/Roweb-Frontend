@@ -34,8 +34,9 @@ const Login = () => {
         let isValid = true;
         const tmpErrors = { ...errors };
 
-        if (!email.length) {
-            tmpErrors.email = "Email cannot be empty!";
+         // Check if email introduced matches the email template
+         if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+            tmpErrors.email = "Please enter  valid email address";
             isValid = false;
         }
 
