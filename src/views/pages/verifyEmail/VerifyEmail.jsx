@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import classes from "./VerifyEmail.module.scss";
 import global_classes from "../../../resources/css/Reusable.module.scss";
 
-import verify_email_image from "../../../resources/images/undraw_teacher_re_sico.svg";
+import verify_email_image from "../../../resources/images/verify-email-img.svg";
 
 const VerifyEmail = () => {
     const navigate = useNavigate();
