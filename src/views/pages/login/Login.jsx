@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+
+import register_image from '../../../resources/images/register-img.svg';
+
 import classes from "./Login.module.scss";
+import global_classes from '../../../resources/css/Reusable.module.scss';
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -69,8 +73,16 @@ const Login = () => {
     };
 
     return (
-        <section>
-            <div className={classes.loginContainer}>
+        <section className={`${global_classes.full_screen} ${global_classes.align_center}`}  >
+            <img src={register_image} alt="cartoon" className={`${global_classes.on_large_screens_img} ${global_classes.only_on_large_screens}`} />
+
+            <div className={`${global_classes.left_upper_corner_text} ${global_classes.only_on_large_screens}`}>
+                <h1>Welcome back!</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, illo!</p>
+            </div>
+        
+            <div className={`customForm ${global_classes.align_center} ${global_classes.direction_column} ${global_classes.form_container}`}>
+                <h1 className={`${global_classes.title}`}>Log in</h1>
                 <div>
                     <Form.Group className="mb-3">
                         <Form.Label>Email address</Form.Label>
