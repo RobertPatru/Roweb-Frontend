@@ -8,6 +8,8 @@ import classes from './ChangePassword.module.scss';
 
 import forgot_password_image from '../../../resources/images/change-passwprd-image.svg';
 
+import get from '../../../libs/FetchApi';
+
 const ChangePassword = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -89,21 +91,11 @@ const ChangePassword = () => {
             oldPassword,
         };
 
-        // const res = await fetch('http://practica.local/api/login', {
-        //   method: 'POST',
-        //   headers: {
-        //     "Accept": 'application/json',
-        //     "Content-Type": 'application/json'
-        //   },
-        //   body: JSON.stringify(payload)
-        // })
-
-        // console.log(res);
-
         navigate("/");
     };
 
-    console.log(errors, errors.email.length);
+
+   
     return (
         <section className={`${global_classes.full_screen} ${global_classes.align_center}`}  >
             <img src={forgot_password_image} alt="cartoon" className={`${global_classes.on_large_screens_img} ${global_classes.only_on_large_screens} ${classes.image_size}` } />
