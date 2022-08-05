@@ -65,6 +65,12 @@
     display: none;
 }
 
+.sidebar {
+	background-color: #5995fd;
+    height: 100vh;
+}
+
+
 @media only screen and (min-width: 300px) {
     .full_screen::before {
         content: "";
