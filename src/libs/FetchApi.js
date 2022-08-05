@@ -68,8 +68,6 @@ const remove = (url, params) => {
 	return request(url, params, 'DELETE');
 };
 
-
-
 export default {
 	get,
 	create,
