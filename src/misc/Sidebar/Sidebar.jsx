@@ -14,7 +14,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 
 const Sidebar = () => {
     return (
-        <div className={classes.sidebar}>
+        <div>
             <ProSidebar>
                 <SidebarHeader>HEDAER</SidebarHeader>
 

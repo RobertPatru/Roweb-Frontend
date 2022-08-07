@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext  } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Button, Form } from "react-bootstrap";
+import FetchApi from "../../../libs/FetchApi";
+import store from "../../../state/store";
 
 import classes from "./Login.module.scss";
 import global_classes from '../../../resources/css/Reusable.module.scss';
@@ -7,6 +10,15 @@ import global_classes from '../../../resources/css/Reusable.module.scss';
 import login_image from '../../../resources/images/login-img.svg';
 
 const Login = () => {
+    // =========================================================================================================================
+    const {
+		state: { user },
+		dispatch,
+	} = useContext(store);
+	const navigate = useNavigate();
+    // =========================================================================================================================
+
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({
@@ -50,28 +62,32 @@ const Login = () => {
         return isValid;
     };
 
+    // =========================================================================================================================
+    // =========================================================================================================================
     const _login = async () => {
-        const isValid = _validate();
+		const isValid = _validate();
 
-        if (isValid) {
-            // make API REQUEST
-            const payload = {
-                email,
-                password,
-            };
+		if (isValid) {
+			// make API REQUEST
+			const payload = {
+				email,
+				password,
+			};
 
-            // const res = await fetch('http://practica.local/api/login', {
-            //   method: 'POST',
-            //   headers: {
-            //     "Accept": 'application/json',
-            //     "Content-Type": 'application/json'
-            //   },
-            //   body: JSON.stringify(payload)
-            // })
+			const res = await FetchApi.create('/login', payload);
 
-            // console.log(res);
-        }
-    };
+			if (!res.isError) {
+				window.sessionStorage.setItem('token', res.data.token);
+
+				dispatch({
+					type: 'SET_USER',
+					payload: res.data.user,
+				});
+
+				navigate('/dashboard');
+			}
+		}
+	};
 
     return (
         <section className={`${global_classes.full_screen} ${global_classes.align_center}`}  >
