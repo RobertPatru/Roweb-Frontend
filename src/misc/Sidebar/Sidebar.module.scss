@@ -1,11 +1,21 @@
 :global {
-    .pro-sidebar-header {
-        background-color: #5995fd;
-    }
     .pro-sidebar-content {
         background-color: #5995fd;
+        color: white;
+        font-size: 20px;
+
     }
     .pro-inner-list-item {
         background-color: #5995fd !important;
     }
+}
+
+.pro-sidebar {
+    color: white !important;
+}
+
+.logo {
+    max-width: 100px;
+    // display: block;
+    margin: auto;
 }

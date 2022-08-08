@@ -12,7 +12,7 @@ import login_image from '../../../resources/images/login-img.svg';
 const Login = () => {
     // =========================================================================================================================
     const {
-		state: { user },
+		// state: { user },
 		dispatch,
 	} = useContext(store);
 	const navigate = useNavigate();
@@ -75,6 +75,7 @@ const Login = () => {
 			};
 
 			const res = await FetchApi.create('/login', payload);
+
 
 			if (!res.isError) {
 				window.sessionStorage.setItem('token', res.data.token);

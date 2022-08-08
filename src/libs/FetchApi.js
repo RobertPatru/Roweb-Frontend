@@ -2,6 +2,7 @@ async function request(url, params = {}, method = 'GET') {
 	let endpoint = `${process.env.REACT_APP_API_URL}/api${url}`;
 
 	const options = {
+		mode: 'no-cors',
 		method,
 		headers: {
 			Accept: 'application/json',
@@ -34,6 +35,7 @@ async function request(url, params = {}, method = 'GET') {
 		result.isError = false;
 		return result;
 	} catch (err) {
+
 		return generateErrorResponse(err);
 	}
 }
