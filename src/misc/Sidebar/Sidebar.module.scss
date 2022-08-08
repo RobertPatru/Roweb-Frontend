@@ -1,4 +1,11 @@
-// // Your variable overrides
-// $sidebar-bg-color: #5995fd;
-
-// @import '~react-pro-sidebar/dist/scss/styles.scss';
+:global {
+    .pro-sidebar-header {
+        background-color: #5995fd;
+    }
+    .pro-sidebar-content {
+        background-color: #5995fd;
+    }
+    .pro-inner-list-item {
+        background-color: #5995fd !important;
+    }
+}
